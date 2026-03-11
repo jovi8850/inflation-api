@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from google.cloud import bigquery
-import os
 
 app = FastAPI()
 
@@ -10,15 +9,23 @@ VIEW = "production_forecast"
 
 client = bigquery.Client(project=PROJECT_ID)
 
+@app.get("/")
+def root():
+    return {"message": "Inflation Forecast API is running"}
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.get("/forecast")
 def get_forecast():
     query = f"""
         SELECT *
         FROM `{PROJECT_ID}.{DATASET}.{VIEW}`
     """
-    
+
     results = client.query(query).result()
-    
+
     for row in results:
         return {
             "forecast_mom_inflation": row.forecast_mom_inflation,
