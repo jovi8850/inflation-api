@@ -1,6 +1,6 @@
 runtime: python311
 
-entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app
+entrypoint: gunicorn -w 2 -k uvicorn.workers.UvicornWorker app.main:app
 
 service_account: inflation-api-sa@inflation-project-012926.iam.gserviceaccount.com
 
