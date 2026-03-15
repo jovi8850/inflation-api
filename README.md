@@ -53,6 +53,14 @@ The model uses:
 ### Model
 - **BigQuery ML Boosted Tree Regressor**
 
+### Monitoring and Production Structure
+
+- / → simple root response
+
+- /health → production health check
+
+- /forecast → live prediction
+
 ### Evaluation
 The final model was evaluated against a naive benchmark and outperformed the naive forecast in mean absolute error (MAE), making it suitable for production deployment.
 
